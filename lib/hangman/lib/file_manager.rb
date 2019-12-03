@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require 'colorize'
-$saved_games = File.open(File.expand_path(File.dirname(__FILE__)) + '/../saved_games.txt', 'r+')
+$saved_games = File.open(__dir__ + '/../saved_games.txt', 'r+')
 module FileManager
   def self.create_valid_words_file
-    unless File.exist?(File.expand_path(File.dirname(__FILE__)) + '/../words/valid_words.txt')
-      valid_words = File.open(File.expand_path(File.dirname(__FILE__)) + '/../words/valid_words.txt', 'w+')
+    unless File.exist?(__dir__ + '/../words/valid_words.txt')
+      valid_words = File.open(__dir__ + '/../words/valid_words.txt', 'w+')
       until text_file.eof?
         word = text_file.readline
         word_length = word.chomp.length
@@ -66,7 +66,7 @@ module FileManager
       game.game_number = largest_game_number ? largest_game_number + 1 : 0
       games << game
       marshaled_games = games.map { |game| Marshal.dump(game) }
-      $saved_games = File.open(File.expand_path(File.dirname(__FILE__)) + '/../saved_games.txt', 'w+')
+      $saved_games = File.open(__dir__ + '/../saved_games.txt', 'w+')
       $saved_games.write(marshaled_games.join('_____'))
       puts 'file was saved'
     else
