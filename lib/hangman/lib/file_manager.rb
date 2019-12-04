@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'colorize'
 $saved_games = File.open(__dir__ + '/../saved_games.txt', 'r+')
 module FileManager
   def self.create_valid_words_file

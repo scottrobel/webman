@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'players'
-require 'colorize'
 class Game
   attr_reader :player_name, :guesses_left, :secret_word, :feedback, :bad_guesses
   attr_accessor :game_number, :game_saved
   def initialize(player)
     @player_name = player.name
-    @guesses_left = 20
+    @guesses_left = 10
     @bad_guesses = []
     @correct_guesses = {} # key is index of correct guess value is letter of correct guess
     @game_saved = false
@@ -130,7 +128,7 @@ class Game
     valid_words.rewind
     random_line = rand(52_454)
     random_line.times { valid_words.readline } # will read between 0 and 52453 lines
-    @secret_word = valid_words.readline.chomp
+    @secret_word = valid_words.readline.chomp.downcase
     print 'secret word set'
   end
 end
