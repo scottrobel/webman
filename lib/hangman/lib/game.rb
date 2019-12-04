@@ -22,7 +22,7 @@ class Game
 
   def get_feedback
     if game_over?
-      word = "The word was #{@@game.secret_word}"
+      word = "The word was #{secret_word}"
       if win?
         'You Win! ' + word
       else
